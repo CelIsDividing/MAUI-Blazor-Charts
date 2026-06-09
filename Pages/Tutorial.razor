@@ -1,0 +1,60 @@
+@page "/tutorial"
+
+<PageTitle>MAUI Blazor Charts - Tutorial</PageTitle>
+
+<div style="padding: 20px; max-width: 900px; margin: 0 auto;">
+    <h2>Tutorial za Graficke Prikaze</h2>
+    
+    <section style="margin-bottom: 40px;">
+        <h3>Dobrodosli!</h3>
+        <p>Ovo je tutorial za rad sa grafickim prikazima u Blazor aplikaciji.</p>
+        <p>Aplikacija koristi MVVM Toolkit i messenger pattern za upravljanje stanjem.</p>
+    </section>
+
+    <section style="margin-bottom: 40px;">
+        <h3>Tipovi Grafikona</h3>
+        <ul>
+            <li><strong>Bar Chart:</strong> Prikaz vrednosti kao stubice</li>
+            <li><strong>Pie Chart:</strong> Kruzni dijagram za procente</li>
+            <li><strong>Round Gauge:</strong> Okrugla mera sa barzinomerom</li>
+            <li><strong>Historical Plot:</strong> Linijski grafikon kroz vreme</li>
+        </ul>
+    </section>
+
+    <section style="margin-bottom: 40px;">
+        <h3>MVVM Toolkit</h3>
+        <p>Koristi se CommunityToolkit.Mvvm za:</p>
+        <ul>
+            <li>ObservableProperty - automatska notifikacija promena</li>
+            <li>RelayCommand - komande za korisnike akcije</li>
+            <li>WeakReferenceMessenger - komunikacija izmedju komponenti</li>
+        </ul>
+    </section>
+
+    <section style="margin-bottom: 40px;">
+        <h3>Pocetna Struktura Podataka</h3>
+        <p>ChartItem model predstavlja jednu karticu sa graficima.</p>
+        <p>DataPoint predstavlja jednu tačku sa vremenskom oznakom.</p>
+        <p>ChartType enumeracija definiše dostupne tipove grafikona.</p>
+    </section>
+
+    <section style="margin-bottom: 40px;">
+        <h3>Komponente</h3>
+        <ul>
+            <li><strong>BarChartCard:</strong> Stubicasti grafikon sa kontrolama za +/-</li>
+            <li><strong>PieChartCard:</strong> Kruzni dijagram za procente</li>
+            <li><strong>RoundGaugeCard:</strong> Mera sa iglom kao brzinomer</li>
+            <li><strong>HistoricalPlotCard:</strong> Grafikon kroz vreme sa trendovima</li>
+        </ul>
+    </section>
+
+    <section style="margin-bottom: 40px;">
+        <h3>Pocetni Koraci</h3>
+        <p>Aplikacija je sprema za pokretanje. Idite na stranicu Grafici da vidite sve kartice u akciji.</p>
+        <a href="/charts" style="display: inline-block; padding: 10px 20px; background-color: #2196f3; color: white; text-decoration: none; border-radius: 4px;">Idi na Grafike</a>
+    </section>
+</div>
+
+
+@code {
+}

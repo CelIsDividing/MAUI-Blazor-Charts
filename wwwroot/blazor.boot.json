@@ -1,0 +1,31 @@
+{
+  "mainAssemblyName": "MauiBlazorCharts",
+  "resources": {
+    "assembly": {
+      "MauiBlazorCharts.wasm": {},
+      "System.Private.CoreLib.wasm": {},
+      "mscorlib.wasm": {},
+      "netstandard.wasm": {},
+      "System.wasm": {},
+      "System.Core.wasm": {},
+      "System.Linq.wasm": {},
+      "System.Runtime.wasm": {},
+      "Microsoft.AspNetCore.Components.wasm": {},
+      "Microsoft.AspNetCore.Components.Web.wasm": {},
+      "Microsoft.AspNetCore.Components.WebAssembly.wasm": {},
+      "Microsoft.JSInterop.wasm": {},
+      "Microsoft.JSInterop.WebAssembly.wasm": {},
+      "Microsoft.DotNet.HotReload.WebAssembly.Browser.wasm": {},
+      "CommunityToolkit.Mvvm.wasm": {},
+      "SkiaSharp.wasm": {}
+    },
+    "lazyAssembly": null,
+    "pdb": null,
+    "jsModuleCache": null,
+    "wasmNative": null,
+    "jsInteropModules": null,
+    "culturalResources": null
+  },
+  "config": [],
+  "entryAssembly": "MauiBlazorCharts"
+}

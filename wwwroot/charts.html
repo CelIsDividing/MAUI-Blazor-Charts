@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAUI Blazor Charts - Grafički Prikazi</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .chart-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .chart-card:hover { transform: translateY(-5px); }
+        .chart-card h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+        .chart-container {
+            position: relative;
+            height: 350px;
+            margin-bottom: 15px;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+        button:hover { background: #764ba2; }
+        .info-text { color: #666; font-size: 12px; text-align: center; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>MAUI Blazor Charts - Dinamički Prikazi Podataka</h1>
+        
+        <div class="charts-grid">
+            <!-- Bar Chart -->
+            <div class="chart-card">
+                <h2>Prodaja</h2>
+                <div class="chart-container">
+                    <canvas id="barChart"></canvas>
+                </div>
+                <div class="controls">
+                    <button onclick="updateBarChart()">Osvežiti</button>
+                    <button onclick="addBarData()">Dodaj Podatak</button>
+                </div>
+                <div class="info-text">Težina: 2.5GB, Rast: +12%</div>
+            </div>
+
+            <!-- Pie Chart -->
+            <div class="chart-card">
+                <h2>Tržišni Udeo</h2>
+                <div class="chart-container">
+                    <canvas id="pieChart"></canvas>
+                </div>
+                <div class="controls">
+                    <button onclick="updatePieChart()">Osvežiti</button>
+                </div>
+                <div class="info-text">Ukupno: 100%</div>
+            </div>
+
+            <!-- Doughnut Chart -->
+            <div class="chart-card">
+                <h2>Kvalitet Servisa</h2>
+                <div class="chart-container">
+                    <canvas id="doughnutChart"></canvas>
+                </div>
+                <div class="controls">
+                    <button onclick="updateDoughnutChart()">Osvežiti</button>
+                </div>
+                <div class="info-text">Dostupnost: 99.9%</div>
+            </div>
+
+            <!-- Line Chart -->
+            <div class="chart-card">
+                <h2>Trend Korisnika</h2>
+                <div class="chart-container">
+                    <canvas id="lineChart"></canvas>
+                </div>
+                <div class="controls">
+                    <button onclick="updateLineChart()">Osvežiti</button>
+                </div>
+                <div class="info-text">Perioda: Zadnjih 12 meseci</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Bar Chart
+        const barCtx = document.getElementById('barChart').getContext('2d');
+        const barChart = new Chart(barCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Januar', 'Februar', 'Mart', 'April', 'Maj'],
+                datasets: [{
+                    label: 'Prodaja (€)',
+                    data: [15000, 25000, 20000, 30000, 28000],
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.7)',
+                        'rgba(118, 75, 162, 0.7)',
+                        'rgba(237, 100, 166, 0.7)',
+                        'rgba(255, 154, 158, 0.7)',
+                        'rgba(250, 200, 124, 0.7)'
+                    ],
+                    borderColor: ['#667eea', '#764ba2', '#ed64a6', '#ff9a9e', '#fac87c'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'top' } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        // Pie Chart
+        const pieCtx = document.getElementById('pieChart').getContext('2d');
+        const pieChart = new Chart(pieCtx, {
+            type: 'pie',
+            data: {
+                labels: ['Proizvod A', 'Proizvod B', 'Proizvod C', 'Proizvod D'],
+                datasets: [{
+                    data: [30, 25, 25, 20],
+                    backgroundColor: [
+                        'rgba(102, 126, 234, 0.8)',
+                        'rgba(118, 75, 162, 0.8)',
+                        'rgba(237, 100, 166, 0.8)',
+                        'rgba(255, 154, 158, 0.8)'
+                    ],
+                    borderColor: ['#667eea', '#764ba2', '#ed64a6', '#ff9a9e'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'right' } }
+            }
+        });
+
+        // Doughnut Chart
+        const doughnutCtx = document.getElementById('doughnutChart').getContext('2d');
+        const doughnutChart = new Chart(doughnutCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Uspešno', 'Upozorenja', 'Greške'],
+                datasets: [{
+                    data: [85, 10, 5],
+                    backgroundColor: [
+                        'rgba(76, 209, 112, 0.8)',
+                        'rgba(255, 193, 7, 0.8)',
+                        'rgba(244, 67, 54, 0.8)'
+                    ],
+                    borderColor: ['#4cd170', '#ffc107', '#f44336'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'right' } }
+            }
+        });
+
+        // Line Chart
+        const lineCtx = document.getElementById('lineChart').getContext('2d');
+        const lineChart = new Chart(lineCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Aktivni Korisnici',
+                    data: [1000, 1500, 2200, 2800, 3200, 3800, 4200, 4600, 4300, 5100, 5600, 6200],
+                    borderColor: '#667eea',
+                    backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                    borderWidth: 3,
+                    fill: true,
+                    tension: 0.4,
+                    pointBackgroundColor: '#667eea',
+                    pointBorderColor: '#fff',
+                    pointBorderWidth: 2,
+                    pointRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: true, position: 'top' } },
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        // Update functions
+        function updateBarChart() {
+            barChart.data.datasets[0].data = barChart.data.datasets[0].data.map(v => v + Math.random() * 5000);
+            barChart.update();
+        }
+
+        function addBarData() {
+            barChart.data.labels.push(`Mesec ${barChart.data.labels.length + 1}`);
+            barChart.data.datasets[0].data.push(Math.random() * 35000);
+            barChart.update();
+        }
+
+        function updatePieChart() {
+            pieChart.data.datasets[0].data = [
+                Math.random() * 40,
+                Math.random() * 40,
+                Math.random() * 40,
+                Math.random() * 40
+            ];
+            pieChart.update();
+        }
+
+        function updateDoughnutChart() {
+            doughnutChart.data.datasets[0].data = [
+                85 + Math.random() * 10,
+                10 + Math.random() * 5,
+                Math.random() * 5
+            ];
+            doughnutChart.update();
+        }
+
+        function updateLineChart() {
+            lineChart.data.datasets[0].data = lineChart.data.datasets[0].data.map(v => v + Math.random() * 500);
+            lineChart.update();
+        }
+
+        // Auto-refresh every 10 seconds
+        setInterval(() => {
+            updateBarChart();
+            updatePieChart();
+            updateDoughnutChart();
+            updateLineChart();
+        }, 10000);
+    </script>
+</body>
+</html>

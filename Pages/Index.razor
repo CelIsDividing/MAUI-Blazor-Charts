@@ -1,0 +1,87 @@
+@page "/"
+@using MauiBlazorCharts.Models
+@using MauiBlazorCharts.ViewModels
+@using CommunityToolkit.Mvvm.Messaging
+@inject MainViewModel ViewModel
+
+<PageTitle>MAUI Blazor Charts - Početna</PageTitle>
+
+<div style="padding: 20px;">
+    <h2>Dobrodošli u MAUI Blazor Charts Demo</h2>
+    
+    <div style="background-color: #e3f2fd; padding: 15px; border-radius: 4px; margin-bottom: 20px; border-left: 4px solid #2196f3;">
+        <h4 style="color: #1565c0;">Kako funkcioniše ova aplikacija:</h4>
+        <ul>
+            <li>Svaka kartica predstavlja jedan tip grafikona</li>
+            <li>Možete dinamički menjati vrednosti kartica korišćenjem dugmadi</li>
+            <li>Grafici se automatski ažuriraju zahvaljujući <strong>WeakReferenceMessenger</strong> patterna</li>
+            <li>Sve kartice se rukovanje preko <strong>MVVM Toolkit</strong></li>
+            <li>Podaci se prate istorijski i prikazuju u linijskim graficima</li>
+        </ul>
+    </div>
+
+    @if (!ViewModel.Charts.Any())
+    {
+        <div style="text-align: center; padding: 40px;">
+            <p style="font-size: 18px; color: #999;">Učitavanje kartice...</p>
+        </div>
+    }
+    else
+    {
+        <div style="background-color: white; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+            <h3>Dostupne Kartice:</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                @foreach (var chart in ViewModel.Charts)
+                {
+                    <button @onclick="() => NavigateToChart(chart)" 
+                            style="padding: 15px; background-color: #f5f5f5; border: 2px solid #ddd; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold;">
+                        @chart.Title
+                        <br/>
+                        <small style="font-size: 12px; color: #999;">@chart.Type</small>
+                    </button>
+                }
+            </div>
+        </div>
+    }
+
+    <div style="background-color: #fff3e0; padding: 15px; border-radius: 4px; margin-bottom: 20px; border-left: 4px solid #ff9800;">
+        <h4 style="color: #e65100;">Status:</h4>
+        <p>@ViewModel.StatusMessage</p>
+    </div>
+
+    <div style="background-color: white; padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+        <h4>Brze Akcije:</h4>
+        <button @onclick="RefreshAll" style="padding: 10px 20px; background-color: #2196f3; color: white; border: none; border-radius: 4px; cursor: pointer; margin-right: 10px;">
+            🔄 Osvežite sve kartice
+        </button>
+        <button @onclick="ShowStats" style="padding: 10px 20px; background-color: #4caf50; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            📊 Prikaži statistiku
+        </button>
+    </div>
+</div>
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await ViewModel.InitializeCommand.ExecuteAsync(null);
+    }
+
+    private void NavigateToChart(ChartItem chart)
+    {
+        // Implement navigation to chart page
+    }
+
+    private void RefreshAll()
+    {
+        ViewModel.RefreshAllChartsCommand.Execute(null);
+    }
+
+    private void ShowStats()
+    {
+        var avgValue = ViewModel.Charts.Average(c => c.CurrentValue);
+        var minValue = ViewModel.Charts.Min(c => c.CurrentValue);
+        var maxValue = ViewModel.Charts.Max(c => c.CurrentValue);
+        
+        ViewModel.StatusMessage = $"Prosek: {avgValue:F2} | Min: {minValue:F2} | Max: {maxValue:F2}";
+    }
+}
