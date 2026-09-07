@@ -1,24 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sr">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MAUI Blazor Charts - Grafički Prikazi Podataka</title>
     <base href="/" />
+
+    <!-- 🌐 1. Zvanični Bootstrap CSS preko CDN linka (rešava grešku na dnu i sređuje dizajn) -->
+    <link rel="stylesheet" href="https://jsdelivr.net" />
+
+    <!-- 🌐 2. Dodatne Bootstrap ikonice (ako ih komponente koriste za grafike) -->
+    <link rel="stylesheet" href="https://jsdelivr.net" />
+
+    <!-- Glavni stilovi vaše aplikacije -->
     <link href="css/app.css" rel="stylesheet" />
-</head>
+  </head>
 
-<body>
-    <div id="app"></div>
+  <body>
+    <div id="app">
+      <div
+        class="d-flex justify-content-center align-items-center"
+        style="height: 100vh"
+      >
+        <div
+          class="spinner-border text-primary"
+          role="status"
+          style="width: 3rem; height: 3rem"
+        >
+          <span class="visually-hidden">Učitavanje...</span>
+        </div>
+      </div>
+    </div>
 
-    <div id="blazor-error-ui">
-        Došlo je do greške u aplikaciji. Pokušajte da osvežite stranicu.
-        <a href="" class="reload">Osvežite</a>
-        <a class="dismiss">✖</a>
+    <!-- Sistemski prozor za greške (Bootstrap će ga sada automatski sakriti) -->
+    <div
+      id="blazor-error-ui"
+      class="alert alert-warning text-center position-fixed bottom-0 start-0 end-0 m-3 shadow-lg"
+      style="display: none; z-index: 1050"
+    >
+      Došlo je do greške u aplikaciji. Pokušajte da osvežite stranicu.
+      <a href="" class="alert-link reload">Osvežite</a>
+      <a
+        class="dismiss position-absolute end-0 top-0 m-2 text-decoration-none text-dark"
+        style="cursor: pointer"
+        >✖</a
+      >
     </div>
 
     <script src="_framework/blazor.webassembly.js"></script>
-</body>
-
+  </body>
 </html>

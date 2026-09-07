@@ -2,9 +2,7 @@ using MauiBlazorCharts.Models;
 
 namespace MauiBlazorCharts.Services;
 
-/// <summary>
 /// Poruka koja se šalje kada se vrednost neke kartice promeni
-/// </summary>
 public class ChartValueChangedMessage
 {
     public string ChartId { get; set; }
@@ -19,9 +17,7 @@ public class ChartValueChangedMessage
     }
 }
 
-/// <summary>
 /// Poruka koja se šalje kada se ponude nove istorijske podatke
-/// </summary>
 public class HistoricalDataUpdatedMessage
 {
     public string ChartId { get; set; }
@@ -34,9 +30,7 @@ public class HistoricalDataUpdatedMessage
     }
 }
 
-/// <summary>
 /// Poruka koja se šalje kada se sve kartice trebaju osveži
-/// </summary>
 public class RefreshAllChartsMessage
 {
     public DateTime RefreshTime { get; set; } = DateTime.Now;

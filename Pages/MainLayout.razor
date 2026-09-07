@@ -1,58 +1,36 @@
 @inherits LayoutComponentBase
 
-<!DOCTYPE html>
-<html lang="sr">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MAUI Blazor Charts</title>
-    <base href="/" />
-    <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/app.css" rel="stylesheet" />
-    <link href="MauiBlazorCharts.styles.css" rel="stylesheet" />
-</head>
-<body>
-    <div class="page">
-        <aside class="sidebar">
-            <nav class="flex-column">
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                        <span class="oi oi-home" aria-hidden="true"></span> Početna
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="charts">
-                        <span class="oi oi-list" aria-hidden="true"></span> Kartice
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="tutorial">
-                        <span class="oi oi-book" aria-hidden="true"></span> Tutorial
-                    </NavLink>
-                </div>
-            </nav>
-        </aside>
-
-        <article class="content px-4">
-            <div class="top-row px-4">
-                <h1>MAUI + Blazor Grafički Prikaz Podataka</h1>
+<div class="page">
+    <aside class="sidebar">
+        <nav class="flex-column">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <span class="oi oi-home" aria-hidden="true"></span> Početna
+                </NavLink>
             </div>
-
-            <div class="content-wrapper">
-                @Body
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="charts">
+                    <span class="oi oi-list" aria-hidden="true"></span> Kartice
+                </NavLink>
             </div>
-        </article>
-    </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="tutorial">
+                    <span class="oi oi-book" aria-hidden="true"></span> Tutorial
+                </NavLink>
+            </div>
+        </nav>
+    </aside>
 
-    <div id="blazor-error-ui">
-        Došlo je do greške u aplikaciji. Pokušajte da osvežite stranicu.
-        <a href="" class="reload">Osvežite</a>
-        <a class="dismiss">✖</a>
-    </div>
+    <article class="content px-4">
+        <div class="top-row px-4">
+            <h1>MAUI + Blazor Grafički Prikaz Podataka</h1>
+        </div>
 
-    <script src="_framework/blazor.web.js"></script>
-</body>
-</html>
+        <div class="content-wrapper">
+            @Body
+        </div>
+    </article>
+</div>
 
 @code {
 }

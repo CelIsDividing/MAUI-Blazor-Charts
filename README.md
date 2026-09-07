@@ -1,33 +1,38 @@
-# 📊 MAUI Blazor Charts - Dinamički Prikazi Podataka
+# MAUI Blazor Charts - Dinamički Prikazi Podataka
 
 Kompletna aplikacija za prikaz podataka kroz različite tipove **dinamičkih grafika** sa modernom UI arhitekturom. Aplikacija koristi .NET 10.0 preview verziju i najnoviju Blazor WebAssembly arhitekturu.
 
-## 🎯 Karakteristike
+## Karakteristike
 
-✅ **Četiri tipa grafika sa dinamičkim ažuriranjem:**
-- 📈 **Bar Chart** - Prodaja po mesecima
-- 🥧 **Pie Chart** - Tržišni udeo po proizvodima  
-- 🍩 **Doughnut Chart** - Kvalitet servisa sa indikatorima
-- 📉 **Line Chart** - Trend aktivnih korisnika (12 meseci)
+**Četiri tipa grafika sa dinamičkim ažuriranjem:**
 
-✅ **Dinamičko ažuriranje:**
+- **Bar Chart** - Prodaja po mesecima
+- **Pie Chart** - Tržišni udeo po proizvodima
+- **Doughnut Chart** - Kvalitet servisa sa indikatorima
+- **Line Chart** - Trend aktivnih korisnika (12 meseci)
+
+**Dinamičko ažuriranje:**
+
 - Auto-refresh svakih 10 sekundi
 - Interaktivni dugmići za osvežavanje
 - Mogućnost dodavanja novih podataka
 
-✅ **Moderan dizajn:**
+  **Moderan dizajn:**
+
 - Gradijentna pozadina (plava → ljubičasta)
 - Responzivni layout sa CSS Grid
 - Animacije i hover efekti
 
-✅ **Visoke performanse:**
+  **Visoke performanse:**
+
 - Chart.js biblioteka
 - Minimalne zavisnosti
 - Brzo učitavanje
 
-## 🚀 Pokretanje
+## Pokretanje
 
 ### Preduslov
+
 - .NET 10.0.101 SDK
 - Windows PowerShell ili terminal
 
@@ -45,7 +50,7 @@ dotnet run --urls "http://localhost:5001"
 
 Otvori browser na: **http://localhost:5001/charts.html**
 
-## 📁 Struktura
+## Struktura
 
 ```
 MauiBlazorCharts/
@@ -63,7 +68,7 @@ MauiBlazorCharts/
 └── README.md
 ```
 
-## 🔧 Tehnologije
+## Tehnologije
 
 - **.NET 10.0.101** - Preview verzija
 - **Blazor WebAssembly** - WASM runtime
@@ -71,15 +76,17 @@ MauiBlazorCharts/
 - **CommunityToolkit.Mvvm 8.2.2** - MVVM pattern
 - **SkiaSharp 3.116.0** - Grafika
 
-## 📊 Grafici
+## Grafici
 
 ### 1. Bar Chart - Prodaja (5 meseci)
+
 ```
 Vrednosti: 15k, 25k, 20k, 30k, 28k EUR
 Status: +12% rast
 ```
 
 ### 2. Pie Chart - Tržišni Udeo
+
 ```
 Proizvod A: 30%
 Proizvod B: 25%
@@ -88,6 +95,7 @@ Proizvod D: 20%
 ```
 
 ### 3. Doughnut Chart - Kvalitet Servisa
+
 ```
 Uspešno:     85% (zeleno)
 Upozorenja:  10% (žuto)
@@ -96,60 +104,64 @@ Dostupnost:  99.9%
 ```
 
 ### 4. Line Chart - Trend Korisnika
+
 ```
 Period: 12 meseci
 Rast: Od 1,000 → 6,200+ korisnika
 ```
 
-## 🎨 Dizajn
+## Dizajn
 
 - Gradijent: `linear-gradient(135deg, #667eea 0%, #764ba2 100%)`
 - Kartice: Bela, shadow, hover animation
 - Font: Segoe UI, Tahoma, Geneva
 - Responsive: CSS Grid sa auto-fit
 
-## 💻 Korišćenje
+## Korišćenje
 
 ### Osvežavanje grafika
+
 ```javascript
 // Ručno
-updateBarChart()
-updatePieChart()
-updateDoughnutChart()
-updateLineChart()
+updateBarChart();
+updatePieChart();
+updateDoughnutChart();
+updateLineChart();
 
 // Automatski (svakih 10 sekundi)
 // Ugrađeno u JavaScript
 ```
 
 ### Dodavanje podataka
+
 ```javascript
 // Dodaj novi red u Bar chart
-addBarData()
+addBarData();
 ```
 
 ### Dugmići
+
 - **"Osvežiti"** - Nova random vrednost
 - **"Dodaj Podatak"** - Novi red
 
-## 🔌 API Integracija
+## API Integracija
 
 Prosti primer za integraciju sa REST API-jem:
 
 ```javascript
 async function loadData(endpoint) {
-    const response = await fetch(`/api/${endpoint}`);
-    return await response.json();
+  const response = await fetch(`/api/${endpoint}`);
+  return await response.json();
 }
 
 // Korišćenje
-loadData('sales').then(data => {
-    barChart.data.datasets[0].data = data;
-    barChart.update();
+loadData("sales").then((data) => {
+  barChart.data.datasets[0].data = data;
+  barChart.update();
 });
 ```
 
-## 🧪 Testiranje
+## Testiranje
 
 ```bash
 # Dev server
@@ -165,66 +177,70 @@ dotnet build
 dotnet run
 ```
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
-| Problem | Rešenje |
-|---------|---------|
-| "Došlo je do greške" | Osvežite stranicu (F5) |
-| Port 5001 zauzet | Koristite: `dotnet run --urls "http://localhost:5002"` |
-| Chart.js ne učitava | Proverite internet, ili koristite lokalnu kopiju |
-| Grafici se ne ažuriraju | Proverite DevTools console za greške |
+| Problem                 | Rešenje                                                |
+| ----------------------- | ------------------------------------------------------ |
+| "Došlo je do greške"    | Osvežite stranicu (F5)                                 |
+| Port 5001 zauzet        | Koristite: `dotnet run --urls "http://localhost:5002"` |
+| Chart.js ne učitava     | Proverite internet, ili koristite lokalnu kopiju       |
+| Grafici se ne ažuriraju | Proverite DevTools console za greške                   |
 
-## 📚 Resursi
+## Resursi
 
 - [Chart.js dokumentacija](https://www.chartjs.org/docs/latest/)
 - [Blazor WebAssembly](https://learn.microsoft.com/en-us/aspnet/core/blazor/webassembly)
 - [CommunityToolkit.Mvvm](https://learn.microsoft.com/en-us/windows/communitytoolkit/mvvm/mvvm_introduction)
 
-## ✅ Status
+## Status
 
-- ✅ Aplikacija pokrenuta
-- ✅ Svi 4 grafika funkcionalni
-- ✅ Dinamičko ažuriranje radi
-- ✅ Responzivni dizajn
-- ✅ Interaktivni dugmići
+- Aplikacija pokrenuta
+- Svi 4 grafika funkcionalni
+- Dinamičko ažuriranje radi
+- Responzivni dizajn
+- Interaktivni dugmići
 
-## 🎓 Edukativni Primeri
+## Edukativni Primeri
 
 Ovaj projekat demonstrira:
-- ✅ Blazor WebAssembly arhitektura
-- ✅ MVVM pattern sa CommunityToolkit
-- ✅ WeakReferenceMessenger komunikacija
-- ✅ Chart.js integracija
-- ✅ Dinamičko ažuriranje UI-ja
-- ✅ Responzivni CSS dizajn
 
-## 📝 Verzija
+- Blazor WebAssembly arhitektura
+- MVVM pattern sa CommunityToolkit
+- WeakReferenceMessenger komunikacija
+- Chart.js integracija
+- Dinamičko ažuriranje UI-ja
+- Responzivni CSS dizajn
+
+## Verzija
 
 **Verzija:** 1.0.0  
-**Status:** ✅ Potpuno funkcionalno  
-**Datum:** 9. Junski 2026  
+**Status:** Potpuno funkcionalno  
+**Datum:** 9. Junski 2026
 
 ---
 
 **Napomena:** Za optimalne rezultate, koristi moderni browser (Chrome, Edge, Firefox) sa JavaScript omogućenim.
 
 # Za Windows
+
 dotnet build -f net8.0-windows10.0.19041.0
 
 # Ili za sve platforme
+
 dotnet build
-```
+
+````
 
 #### 5. Pokretanje Aplikacije
 
 ```bash
 # Za Windows
 dotnet run -f net8.0-windows10.0.19041.0
-```
+````
 
 ---
 
-## 📊 Struktura Projekta
+## Struktura Projekta
 
 ```
 MauiBlazorCharts/
@@ -260,19 +276,19 @@ MauiBlazorCharts/
 
 ---
 
-## 🛠️ Tehnologije i Biblioteke
+## Tehnologije i Biblioteke
 
 ### Glavne Komponente
 
-| Biblioteka | Verzija | Svrha |
-|-----------|---------|-------|
-| Microsoft.Maui.Controls | 8.0.70 | Desktop/Mobile framework |
-| Microsoft.AspNetCore.Components.WebView.Maui | 8.0.70 | Blazor integracija |
-| CommunityToolkit.Mvvm | 8.2.2 | MVVM pattern implementacija |
-| LiveChartsCore | 4.0.0-rc1.2 | Grafički prikazi |
-| LiveChartsCore.SkiaSharp | 4.0.0-rc1.2 | SkiaSharp backend |
-| SkiaSharp | 2.88.8 | 2D grafika |
-| OxyPlot.Core | 2.1.2 | Dodatni grafički alati |
+| Biblioteka                                   | Verzija     | Svrha                       |
+| -------------------------------------------- | ----------- | --------------------------- |
+| Microsoft.Maui.Controls                      | 8.0.70      | Desktop/Mobile framework    |
+| Microsoft.AspNetCore.Components.WebView.Maui | 8.0.70      | Blazor integracija          |
+| CommunityToolkit.Mvvm                        | 8.2.2       | MVVM pattern implementacija |
+| LiveChartsCore                               | 4.0.0-rc1.2 | Grafički prikazi            |
+| LiveChartsCore.SkiaSharp                     | 4.0.0-rc1.2 | SkiaSharp backend           |
+| SkiaSharp                                    | 2.88.8      | 2D grafika                  |
+| OxyPlot.Core                                 | 2.1.2       | Dodatni grafički alati      |
 
 ### NuGet Instalacija
 
@@ -284,17 +300,19 @@ dotnet add package [NazivPaketa] --version [Verzija]
 
 ---
 
-## 📚 Detaljni Tutorial
+## Detaljni Tutorial
 
 ### 1. Tipovi Grafikona
 
-#### 🔵 Bar Chart (Stubičasti Grafikon)
+#### Bar Chart (Stubičasti Grafikon)
+
 - **Svrha**: Prikazivanje vrednosti kao stubice
 - **Korišćenje**: Poređenje vrednosti, prikazivanje količina
 - **Boja**: Plava (#1976d2)
 - **Datoteka**: `BarChartCard.razor`
 
 **Primer:**
+
 ```
 Prodaja po mesecima:
 ┌──┐
@@ -304,13 +322,15 @@ Prodaja po mesecima:
 └──┘
 ```
 
-#### 🟡 Pie Chart (Kružni Dijagram)
+#### Pie Chart (Kružni Dijagram)
+
 - **Svrha**: Prikazivanje procenata i udela
 - **Korišćenje**: Tržišni udeo, distribucija resursa
 - **Boja**: Narandžasta (#ff9800)
 - **Datoteka**: `PieChartCard.razor`
 
 **Primer:**
+
 ```
 Tržišni udeo:
     ╔═══╗
@@ -320,23 +340,27 @@ Tržišni udeo:
     ╚═══╝
 ```
 
-#### 🎯 Round Gauge (Okrugla Mera)
+#### Round Gauge (Okrugla Mera)
+
 - **Svrha**: Prikazivanje statusa kao brzinomer
 - **Korišćenje**: Procenat završenosti, kvalitet, učinkovitost
 - **Boja**: Crvena (#ff5722)
 - **Datoteka**: `RoundGaugeCard.razor`
 
 **Karakteristike:**
+
 - Igla se kreće u krug
 - Boja se menja: zelena (dobro) → narandžasta (upozorenje) → crvena (kritično)
 
-#### 📈 Historical Plot (Linijski Grafikon)
+#### Historical Plot (Linijski Grafikon)
+
 - **Svrha**: Prikazivanje trenda kroz vreme
 - **Korišćenje**: Analiza trendova, monitoring
 - **Boja**: Ljubičasta (#673ab7)
 - **Datoteka**: `HistoricalPlotCard.razor`
 
 **Karakteristike:**
+
 - X-osa: Vremenske oznake
 - Y-osa: Vrednosti
 - Prikazuje do 30 poslednje vrednosti
@@ -353,6 +377,7 @@ private ObservableCollection<ChartItem> charts = new();
 ```
 
 Automatski generiše:
+
 - `Charts` property sa PropertyChanged notifikacijama
 - Binding u XAML/Blazor
 
@@ -367,6 +392,7 @@ public void IncreaseValue(ChartItem? chart)
 ```
 
 Generiše:
+
 - `IncreaseValueCommand` sa `CanExecute`/`Execute`
 - Parameter binding: `Command="{Binding IncreaseValueCommand}" CommandParameter="{Binding Chart}"`
 
@@ -402,7 +428,7 @@ WeakReferenceMessenger.Default.Register<ChartValueChangedMessage>(
     this, HandleChartValueChanged);
 
 private void HandleChartValueChanged(
-    object recipient, 
+    object recipient,
     ChartValueChangedMessage message)
 {
     // Obrada poruke
@@ -411,10 +437,10 @@ private void HandleChartValueChanged(
 
 #### Prednosti
 
-- ✅ **Weak references**: Nema memory leak-ova
-- ✅ **Decoupling**: Komponente nisu direktno zavisne
-- ✅ **Broadcast**: Poruke ide svim slušačima
-- ✅ **Type-safe**: Kompajler proverava tipove
+- **Weak references**: Nema memory leak-ova
+- **Decoupling**: Komponente nisu direktno zavisne
+- **Broadcast**: Poruke ide svim slušačima
+- **Type-safe**: Kompajler proverava tipove
 
 ---
 
@@ -473,7 +499,7 @@ initialCharts.Add(newChart);
 
 ---
 
-## 🎨 Prilagođavanje Stilova
+## Prilagođavanje Stilova
 
 ### CSS Datoteke
 
@@ -500,7 +526,7 @@ Aplikacija je responsive i prilagođava se različitim rezolucijama:
 
 ---
 
-## ⚙️ Napredna Konfiguracija
+## Napredna Konfiguracija
 
 ### Zavisnosti (Dependency Injection)
 
@@ -529,11 +555,12 @@ public partial class MainViewModel : ObservableRecipient
 
 ---
 
-## 🐛 Otklanjanje Greške
+## Otklanjanje Greške
 
 ### Problem: Aplikacija se ne pokreće
 
 **Rešenje:**
+
 ```bash
 dotnet clean
 dotnet restore
@@ -543,6 +570,7 @@ dotnet build
 ### Problem: NuGet paketi nisu pronađeni
 
 **Rešenje:**
+
 ```bash
 dotnet nuget locals all --clear
 dotnet restore
@@ -551,6 +579,7 @@ dotnet restore
 ### Problem: MAUI workload nije instaliran
 
 **Rešenje:**
+
 ```bash
 dotnet workload install maui
 dotnet workload restore
@@ -559,13 +588,14 @@ dotnet workload restore
 ### Problem: BlazorWebView nije prikazan
 
 **Rešenje:**
+
 1. Proverite da je `MainPage.xaml` ispravno konfigurisan
 2. Proverite `MauiProgram.cs` ima `.AddBlazorWebView()`
 3. Proverite da se `.css` datoteke nalaze u `Resources/Styles/`
 
 ---
 
-## 📖 Dodatni Resursi
+## Dodatni Resursi
 
 ### Dokumentacija
 
@@ -581,7 +611,7 @@ dotnet workload restore
 
 ---
 
-## 📝 Primeri Korišćenja
+## Primeri Korišćenja
 
 ### Primer 1: Dinamička Promena Vrednosti
 
@@ -591,20 +621,20 @@ dotnet workload restore
 public void IncreaseValue(ChartItem? chart)
 {
     if (chart == null) return;
-    
+
     // Povećaj
     chart.CurrentValue = Math.Min(
-        chart.CurrentValue + (chart.MaxValue * 0.1), 
+        chart.CurrentValue + (chart.MaxValue * 0.1),
         chart.MaxValue
     );
-    
+
     // Dodaj u istoriju
     chart.HistoricalData.Add(new DataPoint
     {
         Value = chart.CurrentValue,
         Timestamp = DateTime.Now
     });
-    
+
     // Pošalji poruku
     WeakReferenceMessenger.Default.Send(
         new ChartValueChangedMessage(chart.Id, chart.CurrentValue)
@@ -616,7 +646,7 @@ public void IncreaseValue(ChartItem? chart)
 
 ```csharp
 // U Blazor komponenti
-<input type="range" min="0" max="@ChartData?.MaxValue" 
+<input type="range" min="0" max="@ChartData?.MaxValue"
        @onchange="SetCustomValue" />
 
 @code {
@@ -632,39 +662,43 @@ public void IncreaseValue(ChartItem? chart)
 
 ---
 
-## 🎓 Vežbe
+## Vežbe
 
 ### Vežba 1: Dodaj novu karticu
+
 Dodajte novu karticu sa `ChartType.HistoricalPlot` koja prati korisnikove akcije.
 
 ### Vežba 2: Prilagodi stilove
+
 Promenite boje i fontove da odgovaraju vašem brend identitetu.
 
 ### Vežba 3: Dodaj export
+
 Implementirajte mogućnost izvoza podataka u CSV format.
 
 ### Vežba 4: Real-time ažuriranje
+
 Kreirajte BackgroundService koji redovno ažurira vrednosti.
 
 ---
 
-## 📄 Licenca
+## Licenca
 
 Ovaj projekat je besplatan za korišćenje i modifikaciju.
 
 ---
 
-## 💬 Kontakt i Pitanja
+## Kontakt i Pitanja
 
 Za pitanja ili predloge, slobodno kontaktirajte.
 
 ---
 
-## 📊 Verzija i Istorija
+## Verzija i Istorija
 
 - **v1.0.0** (2024) - Početna verzija sa 4 tipa grafikona
 - Planirano: Real-time data binding, export, custom themes
 
 ---
 
-**Uživajte u razvoju! 🚀**
+**Uživajte u razvoju! **

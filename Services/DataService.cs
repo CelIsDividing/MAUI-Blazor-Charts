@@ -2,9 +2,7 @@ using MauiBlazorCharts.Models;
 
 namespace MauiBlazorCharts.Services;
 
-/// <summary>
 /// Servis koji pruža test podatke za kartice
-/// </summary>
 public class DataService
 {
     public static List<ChartItem> GetInitialCharts()

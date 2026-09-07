@@ -1,0 +1,40 @@
+@using MauiBlazorCharts.Models
+
+<div style="padding: 20px; background: white; font-family: sans-serif;">
+    <h3 style="margin-top: 0; color: #333;">@ChartData.Title</h3>
+    <p style="color: #666; font-size: 14px;">@ChartData.Description</p>
+
+    <!-- Kontejner za brzinomer koji koristi kružni gradijent za progres bar -->
+    <div style="display: flex; justify-content: center; margin: 20px 0;">
+        <div style="width: 140px; height: 140px; border-radius: 50%; 
+            background: conic-gradient(#00bcd4 0% @(ChartData.CurrentValue.ToString("F0"))%, #eee @(ChartData.CurrentValue.ToString("F0"))% 100%); 
+            display: flex; align-items: center; justify-content: center; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: background 0.3s ease;">
+
+            <!-- Unutrašnji beli krug koji stvara efekat "prstena" i drži tekst -->
+            <div
+                style="width: 110px; height: 110px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
+                <span style="font-size: 24px; font-weight: bold; color: #333;">
+                    @ChartData.CurrentValue.ToString("F0")%
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kontrole za upravljanje vrednošću -->
+    <div style="display: flex; gap: 10px; margin-top: 15px;">
+        <button @onclick="() => OnValueIncreased.InvokeAsync(ChartData)"
+                style="padding: 5px 15px; background: #4caf50; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">+</button>
+        <button @onclick="() => OnValueDecreased.InvokeAsync(ChartData)"
+                style="padding: 5px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">-</button>
+        <button @onclick="() => OnChartReset.InvokeAsync(ChartData)"
+                style="padding: 5px 15px; background: #9e9e9e; color: white; border: none; border-radius: 4px; cursor: pointer;">Reset</button>
+    </div>
+</div>
+
+@code {
+    [Parameter] public ChartItem ChartData { get; set; } = null!;
+    [Parameter] public EventCallback<ChartItem> OnValueIncreased { get; set; }
+    [Parameter] public EventCallback<ChartItem> OnValueDecreased { get; set; }
+    [Parameter] public EventCallback<ChartItem> OnChartReset { get; set; }
+}

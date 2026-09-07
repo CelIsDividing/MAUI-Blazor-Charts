@@ -7,9 +7,7 @@ using System.Collections.ObjectModel;
 
 namespace MauiBlazorCharts.ViewModels;
 
-/// <summary>
 /// Glavni ViewModel koji upravlja svim karticama
-/// </summary>
 public partial class MainViewModel : ObservableObject
 {
     private readonly DataService _dataService;
@@ -37,8 +35,10 @@ public partial class MainViewModel : ObservableObject
             StatusMessage = "Učitavanje kartice...";
 
             // Učitaj početne podatke
-            var initialCharts = DataService.GetInitialCharts();
-            
+            var initialCharts = Services.DataService.GetInitialCharts();
+
+            Charts.Clear();
+
             foreach (var chart in initialCharts)
             {
                 Charts.Add(chart);
@@ -47,6 +47,7 @@ public partial class MainViewModel : ObservableObject
             StatusMessage = "Kartice uspešno učitane!";
             IsLoading = false;
 
+            WeakReferenceMessenger.Default.Unregister<ChartValueChangedMessage>(this);
             // Registruj se na poruke
             WeakReferenceMessenger.Default.Register<ChartValueChangedMessage>(this, HandleChartValueChanged);
         }
@@ -57,9 +58,7 @@ public partial class MainViewModel : ObservableObject
         }
     }
 
-    /// <summary>
     /// Povećaj vrednost kartice za 10%
-    /// </summary>
     [RelayCommand]
     public void IncreaseValue(ChartItem? chart)
     {
@@ -84,9 +83,7 @@ public partial class MainViewModel : ObservableObject
         StatusMessage = $"Kartica '{chart.Title}' ažurirana na {newValue:F2}";
     }
 
-    /// <summary>
     /// Smanji vrednost kartice za 10%
-    /// </summary>
     [RelayCommand]
     public void DecreaseValue(ChartItem? chart)
     {
@@ -111,9 +108,7 @@ public partial class MainViewModel : ObservableObject
         StatusMessage = $"Kartica '{chart.Title}' smanjena na {newValue:F2}";
     }
 
-    /// <summary>
     /// Resetuj vrednost kartice na početnu
-    /// </summary>
     [RelayCommand]
     public void ResetChart(ChartItem? chart)
     {
@@ -121,7 +116,7 @@ public partial class MainViewModel : ObservableObject
 
         chart.CurrentValue = chart.MaxValue * 0.5;
         chart.HistoricalData.Clear();
-        chart.HistoricalData = DataService.GenerateHistoricalData(5, 
+        chart.HistoricalData = DataService.GenerateHistoricalData(5,
             () => new Random().NextDouble() * chart.MaxValue);
 
         WeakReferenceMessenger.Default.Send(
@@ -130,9 +125,7 @@ public partial class MainViewModel : ObservableObject
         StatusMessage = $"Kartica '{chart.Title}' resetovana";
     }
 
-    /// <summary>
     /// Osveži sve kartice sa novim podacima
-    /// </summary>
     [RelayCommand]
     public void RefreshAllCharts()
     {
@@ -152,9 +145,7 @@ public partial class MainViewModel : ObservableObject
         StatusMessage = "Sve kartice su osvežene!";
     }
 
-    /// <summary>
     /// Rukuj promenom vrednosti kartice iz drugih komponenti
-    /// </summary>
     private void HandleChartValueChanged(object recipient, ChartValueChangedMessage message)
     {
         var chart = Charts.FirstOrDefault(c => c.Id == message.ChartId);
