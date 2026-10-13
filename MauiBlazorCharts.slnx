@@ -1,0 +1,7 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/MauiBlazorCharts.Shared/MauiBlazorCharts.Shared.csproj" />
+    <Project Path="src/MauiBlazorCharts.Web/MauiBlazorCharts.Web.csproj" />
+    <Project Path="src/MauiBlazorCharts/MauiBlazorCharts.csproj" />
+  </Folder>
+</Solution>

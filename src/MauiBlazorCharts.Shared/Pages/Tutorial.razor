@@ -1,0 +1,52 @@
+@page "/tutorial"
+
+<PageTitle>MAUI Blazor Charts - Tutorial</PageTitle>
+
+<div style="padding: 20px; max-width: 900px; margin: 0 auto;">
+    <h2>Tutorial for Charts with a SQLite Database</h2>
+    
+    <section style="margin-bottom: 30px;">
+        <h3>Welcome!</h3>
+        <p>This application demonstrates working with data visualizations in a .NET MAUI Blazor environment, with persistent storage of data in a local <strong>SQLite</strong> database.</p>
+        <p>The application uses <strong>Entity Framework Core</strong> for database access, the <strong>MVVM Toolkit</strong> for state management, and <strong>WeakReferenceMessenger</strong> for loose coupling between layers.</p>
+    </section>
+
+    <section style="margin-bottom: 30px;">
+        <h3>SQLite Database (Entity Framework Core)</h3>
+        <p>Data is persisted in the <code>charts.db</code> database on disk:</p>
+        <ul>
+            <li><strong>AppDbContext:</strong> Manages the SQLite connection and the <code>Charts</code> and <code>DataPoints</code> tables.</li>
+            <li><strong>ChartEntity & DataPointEntity:</strong> Database entities with one-to-many relationships and cascade delete.</li>
+            <li><strong>DataService:</strong> A service that performs CRUD operations on the database based on messages sent from the ViewModel or the UI.</li>
+        </ul>
+    </section>
+
+    <section style="margin-bottom: 30px;">
+        <h3>Chart Types</h3>
+        <ul>
+            <li><strong>Bar Chart:</strong> A bar display of a data series from the database (Sales by period).</li>
+            <li><strong>Pie Chart:</strong> A pie chart of shares with dynamic percentages (Market share).</li>
+            <li><strong>Round Gauge:</strong> A circular gauge of satisfaction/performance with thresholds.</li>
+            <li><strong>Historical Plot:</strong> A trend line (SVG) and a table of recorded historical points over time.</li>
+        </ul>
+    </section>
+
+    <section style="margin-bottom: 30px;">
+        <h3>MVVM Toolkit & Messenger</h3>
+        <p>The architecture supports full decomposition and loose coupling:</p>
+        <ul>
+            <li><code>ObservableProperty</code>: Automatic change notification to the UI.</li>
+            <li><code>RelayCommand</code>: Commands for user actions (+, -, Reset, Refresh).</li>
+            <li><code>WeakReferenceMessenger</code>: Two-way communication between the ViewModel and the SQLite service without direct references.</li>
+        </ul>
+    </section>
+
+    <section style="margin-bottom: 30px;">
+        <h3>Getting Started</h3>
+        <p>Go to the Cards page to see all dynamic charts synchronized with the SQLite database.</p>
+        <a href="/charts" style="display: inline-block; padding: 10px 20px; background-color: #2196f3; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">Go to Cards</a>
+    </section>
+</div>
+
+@code {
+}

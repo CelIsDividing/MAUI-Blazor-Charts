@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFrameworks>net10.0-windows10.0.19041.0</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>MauiBlazorCharts</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<UseMauiBlazorEmbedding>true</UseMauiBlazorEmbedding>
+		<SingleProject>true</SingleProject>
+		<WindowsPackageType>None</WindowsPackageType>
+
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+
+		<SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Packages explicitly added that the .NET 10 SDK requests in the log: -->
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.12" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.20" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.20" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\MauiBlazorCharts.Shared\MauiBlazorCharts.Shared.csproj" />
+	</ItemGroup>
+
+</Project>
