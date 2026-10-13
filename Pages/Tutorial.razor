@@ -3,58 +3,50 @@
 <PageTitle>MAUI Blazor Charts - Tutorial</PageTitle>
 
 <div style="padding: 20px; max-width: 900px; margin: 0 auto;">
-    <h2>Tutorial za Graficke Prikaze</h2>
+    <h2>Tutorijal za Grafičke Prikaze sa SQLite Bazom</h2>
     
-    <section style="margin-bottom: 40px;">
-        <h3>Dobrodosli!</h3>
-        <p>Ovo je tutorial za rad sa grafickim prikazima u Blazor aplikaciji.</p>
-        <p>Aplikacija koristi MVVM Toolkit i messenger pattern za upravljanje stanjem.</p>
+    <section style="margin-bottom: 30px;">
+        <h3>Dobrodošli!</h3>
+        <p>Ova aplikacija demonstrira rad sa grafičkim prikazima podataka u .NET MAUI Blazor okruženju, sa trajnim čuvanjem podataka u lokalnoj <strong>SQLite</strong> bazi.</p>
+        <p>Aplikacija koristi <strong>Entity Framework Core</strong> za pristup bazi, <strong>MVVM Toolkit</strong> za upravljanje stanjem i <strong>WeakReferenceMessenger</strong> za slabu spregu između slojeva.</p>
     </section>
 
-    <section style="margin-bottom: 40px;">
+    <section style="margin-bottom: 30px;">
+        <h3>SQLite Baza Podataka (Entity Framework Core)</h3>
+        <p>Podaci se trajno čuvaju u bazi <code>charts.db</code> na disku:</p>
+        <ul>
+            <li><strong>AppDbContext:</strong> Upravlja SQLite konekcijom i tabelama <code>Charts</code> i <code>DataPoints</code>.</li>
+            <li><strong>ChartEntity & DataPointEntity:</strong> Entiteti baze podataka sa relacijama jedan-prema-više i kaskadnim brisanjem.</li>
+            <li><strong>DataService:</strong> Servis koji izvršava CRUD upite nad bazom podataka na osnovu poruka poslatim sa ViewModela ili UI-ja.</li>
+        </ul>
+    </section>
+
+    <section style="margin-bottom: 30px;">
         <h3>Tipovi Grafikona</h3>
         <ul>
-            <li><strong>Bar Chart:</strong> Prikaz vrednosti kao stubice</li>
-            <li><strong>Pie Chart:</strong> Kruzni dijagram za procente</li>
-            <li><strong>Round Gauge:</strong> Okrugla mera sa barzinomerom</li>
-            <li><strong>Historical Plot:</strong> Linijski grafikon kroz vreme</li>
+            <li><strong>Bar Chart:</strong> Stubičasti prikaz serije podataka iz baze (Prodaja po periodima).</li>
+            <li><strong>Pie Chart:</strong> Kružni dijagram udela sa dinamičkim procentima (Tržišni udeo).</li>
+            <li><strong>Round Gauge:</strong> Kružni merač zadovoljstva/performansi sa granicama.</li>
+            <li><strong>Historical Plot:</strong> Trend linija (SVG) i tabela zabeleženih istorijskih tačaka kroz vreme.</li>
         </ul>
     </section>
 
-    <section style="margin-bottom: 40px;">
-        <h3>MVVM Toolkit</h3>
-        <p>Koristi se CommunityToolkit.Mvvm za:</p>
+    <section style="margin-bottom: 30px;">
+        <h3>MVVM Toolkit & Messenger</h3>
+        <p>Arhitektura podržava potpunu dekompoziciju i slabu spregu:</p>
         <ul>
-            <li>ObservableProperty - automatska notifikacija promena</li>
-            <li>RelayCommand - komande za korisnike akcije</li>
-            <li>WeakReferenceMessenger - komunikacija izmedju komponenti</li>
+            <li><code>ObservableProperty</code>: Automatska notifikacija promena na UI.</li>
+            <li><code>RelayCommand</code>: Komande za korisničke akcije (+, -, Reset, Refresh).</li>
+            <li><code>WeakReferenceMessenger</code>: Dvosmerna komunikacija između ViewModela i SQLite servisa bez direktnih referenci.</li>
         </ul>
     </section>
 
-    <section style="margin-bottom: 40px;">
-        <h3>Pocetna Struktura Podataka</h3>
-        <p>ChartItem model predstavlja jednu karticu sa graficima.</p>
-        <p>DataPoint predstavlja jednu tačku sa vremenskom oznakom.</p>
-        <p>ChartType enumeracija definiše dostupne tipove grafikona.</p>
-    </section>
-
-    <section style="margin-bottom: 40px;">
-        <h3>Komponente</h3>
-        <ul>
-            <li><strong>BarChartCard:</strong> Stubicasti grafikon sa kontrolama za +/-</li>
-            <li><strong>PieChartCard:</strong> Kruzni dijagram za procente</li>
-            <li><strong>RoundGaugeCard:</strong> Mera sa iglom kao brzinomer</li>
-            <li><strong>HistoricalPlotCard:</strong> Grafikon kroz vreme sa trendovima</li>
-        </ul>
-    </section>
-
-    <section style="margin-bottom: 40px;">
-        <h3>Pocetni Koraci</h3>
-        <p>Aplikacija je sprema za pokretanje. Idite na stranicu Grafici da vidite sve kartice u akciji.</p>
-        <a href="/charts" style="display: inline-block; padding: 10px 20px; background-color: #2196f3; color: white; text-decoration: none; border-radius: 4px;">Idi na Grafike</a>
+    <section style="margin-bottom: 30px;">
+        <h3>Početni Koraci</h3>
+        <p>Idite na stranicu Kartice da vidite sve dinamičke grafikone sinhronizovane sa SQLite bazom.</p>
+        <a href="/charts" style="display: inline-block; padding: 10px 20px; background-color: #2196f3; color: white; text-decoration: none; border-radius: 4px; font-weight: bold;">Idi na Kartice</a>
     </section>
 </div>
-
 
 @code {
 }

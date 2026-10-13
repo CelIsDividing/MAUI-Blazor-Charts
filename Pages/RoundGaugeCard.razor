@@ -1,34 +1,47 @@
 @using MauiBlazorCharts.Models
 
-<div style="padding: 20px; background: white; font-family: sans-serif;">
-    <h3 style="margin-top: 0; color: #333;">@ChartData.Title</h3>
-    <p style="color: #666; font-size: 14px;">@ChartData.Description</p>
+<div style="padding: 20px; background: white; font-family: sans-serif; height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+    <div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px;">
+            <h3 style="margin: 0; color: #333;">@ChartData.Title</h3>
+            <span style="background: #e3f2fd; color: #1976d2; font-size: 11px; padding: 3px 8px; border-radius: 12px; font-weight: bold;">SQLite</span>
+        </div>
+        <p style="color: #666; font-size: 13px; margin-bottom: 15px;">@ChartData.Description</p>
 
-    <!-- Kontejner za brzinomer koji koristi kružni gradijent za progres bar -->
-    <div style="display: flex; justify-content: center; margin: 20px 0;">
-        <div style="width: 140px; height: 140px; border-radius: 50%; 
-            background: conic-gradient(#00bcd4 0% @(ChartData.CurrentValue.ToString("F0"))%, #eee @(ChartData.CurrentValue.ToString("F0"))% 100%); 
-            display: flex; align-items: center; justify-content: center; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: background 0.3s ease;">
+        @{
+            var gaugeColor = ChartData.CurrentValue >= 80 ? "#4caf50" : (ChartData.CurrentValue >= 50 ? "#ff9800" : "#f44336");
+            var pctString = ChartData.CurrentValue.ToString("F1", System.Globalization.CultureInfo.InvariantCulture);
+        }
 
-            <!-- Unutrašnji beli krug koji stvara efekat "prstena" i drži tekst -->
-            <div
-                style="width: 110px; height: 110px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
-                <span style="font-size: 24px; font-weight: bold; color: #333;">
-                    @ChartData.CurrentValue.ToString("F0")%
-                </span>
+        <div style="display: flex; justify-content: center; align-items: center; margin: 15px 0;">
+            <div @key="ChartData.CurrentValue" class="chart-value-update"
+                 style="width: 140px; height: 140px; border-radius: 50%; background: conic-gradient(@gaugeColor 0% @(pctString)%, #e0e0e0 @(pctString)% 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(0,0,0,0.08);">
+                <div style="width: 105px; height: 105px; background: white; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);">
+                    <span style="font-size: 22px; font-weight: bold; color: @gaugeColor;">
+                        @ChartData.CurrentValue.ToString("F1")%
+                    </span>
+                    <span style="font-size: 10px; color: #888; text-transform: uppercase;">
+                        @(ChartData.CurrentValue >= 80 ? "Odlično" : (ChartData.CurrentValue >= 50 ? "Umereno" : "Kritično"))
+                    </span>
+                </div>
             </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; padding: 8px 12px; background: #f8f9fa; border-radius: 6px; font-size: 12px; color: #666;">
+            <span>Min: @ChartData.MinValue%</span>
+            <span>Cilj: &gt; 85%</span>
+            <span>Max: @ChartData.MaxValue%</span>
         </div>
     </div>
 
     <!-- Kontrole za upravljanje vrednošću -->
-    <div style="display: flex; gap: 10px; margin-top: 15px;">
+    <div style="display: flex; gap: 8px; margin-top: 15px;">
         <button @onclick="() => OnValueIncreased.InvokeAsync(ChartData)"
-                style="padding: 5px 15px; background: #4caf50; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">+</button>
+                style="flex: 1; padding: 8px 12px; background: #4caf50; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px;">+ Povećaj</button>
         <button @onclick="() => OnValueDecreased.InvokeAsync(ChartData)"
-                style="padding: 5px 15px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">-</button>
+                style="flex: 1; padding: 8px 12px; background: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 14px;">- Smanji</button>
         <button @onclick="() => OnChartReset.InvokeAsync(ChartData)"
-                style="padding: 5px 15px; background: #9e9e9e; color: white; border: none; border-radius: 4px; cursor: pointer;">Reset</button>
+                style="padding: 8px 15px; background: #757575; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 13px;">Reset</button>
     </div>
 </div>
 

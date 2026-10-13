@@ -45,3 +45,10 @@ bld/
 # Build folder
 bin/
 obj/
+
+# MSBuild/SDK resolver backups
+*.SdkResolver.*.proj.Backup.tmp
+
+# Python
+__pycache__/
+*.pyc

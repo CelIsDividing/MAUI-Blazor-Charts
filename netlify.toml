@@ -1,0 +1,8 @@
+[build]
+  publish = "wwwroot"
+  command = ""
+
+[[redirects]]
+  from = "/"
+  to = "/charts.html"
+  status = 200

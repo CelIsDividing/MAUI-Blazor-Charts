@@ -1,28 +1,32 @@
-<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
+		<TargetFrameworks>net10.0-windows10.0.19041.0</TargetFrameworks>
+		<OutputType>Exe</OutputType>
+		<RootNamespace>MauiBlazorCharts</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<UseMauiBlazorEmbedding>true</UseMauiBlazorEmbedding>
+		<SingleProject>true</SingleProject>
+		<WindowsPackageType>None</WindowsPackageType>
+		
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
-		<InvariantGlobalization>false</InvariantGlobalization>
-		<EnableDefaultContentItems>true</EnableDefaultContentItems>
-	</PropertyGroup>
-
-	<!-- Ispravno podešavanje za Trimming samo u Release modu -->
-	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
-		<PublishTrimmed>true</PublishTrimmed>
+		<SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
+		
+		<SkipValidateMauiImplicitPackageReferences>true</SkipValidateMauiImplicitPackageReferences>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<!-- ASP.NET Core Blazor Web -->
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="9.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" PrivateAssets="all" />
-
-		<!-- MVVM Toolkit -->
+		<!-- Eksplicitno dodani paketi koje .NET 10 SDK traži u logu: -->
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.12" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.20" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Maui" Version="10.0.20" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
+		
+		<!-- MVVM Toolkit za profesora -->
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
-
-		<!-- SkiaSharp for graphics -->
-		<PackageReference Include="SkiaSharp" Version="3.116.0" />
 	</ItemGroup>
+
 
 </Project>

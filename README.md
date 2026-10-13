@@ -1,70 +1,52 @@
-# MAUI Blazor Charts - Dinamički Prikazi Podataka
+# MAUI Blazor Charts - Dinamički Prikazi Podataka sa SQLite Bazom
 
-Kompletna aplikacija za prikaz podataka kroz različite tipove **dinamičkih grafika** sa modernom UI arhitekturom. Aplikacija koristi .NET 10.0 preview verziju i najnoviju Blazor WebAssembly arhitekturu.
+Kompletna .NET MAUI + Blazor aplikacija za prikaz i upravljanje podacima kroz različite tipove **dinamičkih grafika** uz perzistenciju u lokalnoj **SQLite** bazi podataka i **MVVM Toolkit** arhitekturu sa slabom spregom (**WeakReferenceMessenger**).
 
 ## Karakteristike
 
-**Četiri tipa grafika sa dinamičkim ažuriranjem:**
+**Četiri tipa grafika sa SQLite integracijom:**
 
-- **Bar Chart** - Prodaja po mesecima
-- **Pie Chart** - Tržišni udeo po proizvodima
-- **Doughnut Chart** - Kvalitet servisa sa indikatorima
-- **Line Chart** - Trend aktivnih korisnika (12 meseci)
+- **Bar Chart** - Prodaja po mesecima (učitava se i ažurira direktno u SQLite tabeli `Charts` i `DataPoints`)
+- **Pie Chart** - Tržišni udeo sa dinamičkim procentima i segmentima
+- **Round Gauge** - Kružni merač kvaliteta servisa i indikatorom stanja
+- **Historical Plot** - Trend linija (SVG) i tabela zabeleženih istorijskih tačaka kroz vreme
 
-**Dinamičko ažuriranje:**
+**SQLite Baza & Entity Framework Core:**
+- Baza podataka: `charts.db` (lokalno u `FileSystem.AppDataDirectory`)
+- `AppDbContext`: Entity Framework Core DbContext
+- `ChartEntity` i `DataPointEntity`: Relacioni model sa kaskadnim brisanjem
+- Asinhroni upiti i ažuriranje u realnom vremenu
 
-- Auto-refresh svakih 10 sekundi
-- Interaktivni dugmići za osvežavanje
-- Mogućnost dodavanja novih podataka
+**MVVM Arhitektura & Messenger (Slaba sprega):**
+- `CommunityToolkit.Mvvm` (ObservableObject, ObservableProperty, RelayCommand)
+- `WeakReferenceMessenger`: Komunikacija između Blazor UI-ja, ViewModela i SQLite servisa bez direktnih referenci
+- Automatsko periodično osvežavanje sa sinhronizacijom na bazu
 
-  **Moderan dizajn:**
-
-- Gradijentna pozadina (plava → ljubičasta)
-- Responzivni layout sa CSS Grid
-- Animacije i hover efekti
-
-  **Visoke performanse:**
-
-- Chart.js biblioteka
-- Minimalne zavisnosti
-- Brzo učitavanje
-
-## Pokretanje
-
-### Preduslov
-
-- .NET 10.0.101 SDK
-- Windows PowerShell ili terminal
-
-### Koraci
-
-```bash
-# Navigacija u projekat
-cd "c:\Users\krist\Documents\Fakultet\New folder\MauiBlazorCharts"
-
-# Pokretanje dev servera
-dotnet watch
-# ili
-dotnet run --urls "http://localhost:5001"
-```
-
-Otvori browser na: **http://localhost:5001/charts.html**
-
-## Struktura
+## Struktura Projekta
 
 ```
 MauiBlazorCharts/
-├── wwwroot/
-│   ├── charts.html              # Glavna aplikacija sa graficima
-│   ├── index.html               # Blazor host
-│   ├── blazor.boot.json         # Blazor konfiguracija
-│   ├── css/app.css              # Stilovi
-│   └── _framework/              # Blazor runtime (auto-generiš)
-├── Pages/                       # Blazor komponente
-├── Models/                      # Modeli podataka
-├── ViewModels/                  # MVVM ViewModels
-├── Services/                    # Servisne klase
-├── MauiBlazorCharts.csproj      # Project datoteka
+├── Data/
+│   └── AppDbContext.cs          # SQLite DbContext i EF Core entiteti
+├── Models/
+│   └── ChartModels.cs           # Domen modeli i enumeracije
+├── ViewModels/
+│   └── MainViewModel.cs         # Centralni ViewModel (MVVM Toolkit)
+├── Services/
+│   ├── DataService.cs           # SQLite servis i Messenger handleri
+│   └── MessengerMessages.cs     # Definicije poruka (slaba sprega)
+├── Pages/
+│   ├── App.razor                # Root Blazor komponenta i Router
+│   ├── MainLayout.razor         # Navigacioni layout i meni
+│   ├── Index.razor              # Početna kontrolna tabla sa SQLite statistikom
+│   ├── Charts.razor             # Prikaz svih kartica sa graficima
+│   ├── BarChartCard.razor       # Kartica za stubičasti grafikon
+│   ├── PieChartCard.razor       # Kartica za kružni grafikon
+│   ├── RoundGaugeCard.razor     # Kartica za merač sa skalom
+│   ├── HistoricalPlotCard.razor # Kartica za istorijski plot (SVG + tabela)
+│   └── Tutorial.razor           # Tutorijal i dokumentacija
+├── MauiProgram.cs               # DI kontejner i MAUI bootstrap
+├── MauiBlazorCharts.csproj      # Projekat i NuGet paketi
 └── README.md
 ```
 
@@ -221,22 +203,23 @@ Ovaj projekat demonstrira:
 
 **Napomena:** Za optimalne rezultate, koristi moderni browser (Chrome, Edge, Firefox) sa JavaScript omogućenim.
 
+```bash
 # Za Windows
+dotnet build -f net10.0-windows10.0.19041.0
 
-dotnet build -f net8.0-windows10.0.19041.0
-
-# Ili za sve platforme
-
+# Ili jednostavno
 dotnet build
-
-````
+```
 
 #### 5. Pokretanje Aplikacije
 
 ```bash
 # Za Windows
-dotnet run -f net8.0-windows10.0.19041.0
-````
+dotnet run -f net10.0-windows10.0.19041.0
+
+# Ili jednostavno
+dotnet run
+```
 
 ---
 

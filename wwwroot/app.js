@@ -9,9 +9,9 @@ window.formatNumber = function(value, decimals) {
 
 // Utility function to get color based on percentage
 window.getColorForPercentage = function(percentage) {
-    if (percentage >= 80) return '#4caf50'; // Green
-    if (percentage >= 50) return '#ff9800'; // Orange
-    return '#f44336'; // Red
+    if (percentage >= 80) return '#4caf50'; 
+    if (percentage >= 50) return '#ff9800'; 
+    return '#f44336'; 
 };
 
 // Utility function to generate random color

@@ -1,6 +1,7 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+
 namespace MauiBlazorCharts.Models;
 
-/// Predstavlja jednu podatkovnu tačku sa vrednostima
 public class DataPoint
 {
     public string Label { get; set; } = string.Empty;
@@ -8,7 +9,6 @@ public class DataPoint
     public DateTime Timestamp { get; set; } = DateTime.Now;
 }
 
-/// Predstavlja tip grafikona koji će biti prikazan
 public enum ChartType
 {
     Bar,
@@ -17,15 +17,27 @@ public enum ChartType
     HistoricalPlot
 }
 
-/// Predstavlja jednu karticu sa graficima povezanu na podatke
-public class ChartItem
+public partial class ChartItem : ObservableObject
 {
     public string Id { get; set; } = Guid.NewGuid().ToString();
     public string Title { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public ChartType Type { get; set; }
-    public double CurrentValue { get; set; }
+
+    private double _currentValue;
+    public double CurrentValue
+    {
+        get => _currentValue;
+        set => SetProperty(ref _currentValue, value);
+    }
+
     public double MinValue { get; set; } = 0;
     public double MaxValue { get; set; } = 100;
-    public List<DataPoint> HistoricalData { get; set; } = new();
+
+    private List<DataPoint> _historicalData = new();
+    public List<DataPoint> HistoricalData
+    {
+        get => _historicalData;
+        set => SetProperty(ref _historicalData, value);
+    }
 }
